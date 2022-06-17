@@ -33,7 +33,6 @@ func ModifyDB(sql string, args ...interface{}) (int64, error) {
 	result, err := db.Exec(sql, args...)
 	if err != nil {
 		log.Println(err)
-		fmt.Println(err)
 		return 0, err
 	}
 	count, err1 := result.RowsAffected()
