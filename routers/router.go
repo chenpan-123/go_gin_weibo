@@ -14,8 +14,21 @@ func InitRouter() *gin.Engine {
 	store := cookie.NewStore([]byte("loginuser"))
 	r.Use(sessions.Sessions("mysession", store))
 
-	//注册
-	r.GET("/register", controllers.RegisterGet)
-	r.POST("/register", controllers.RegisterPost)
+	{
+		//注册：
+		r.GET("/register", controllers.RegisterGet)
+		r.POST("/register", controllers.RegisterPost)
+
+		//登录：
+		r.GET("/login", controllers.LoginGet)
+		r.POST("/login", controllers.LoginPost)
+
+		//首页
+		r.GET("/", controllers.HomeGet)
+
+		//退出
+		r.GET("/exit", controllers.ExitGet)
+	}
+
 	return r
 }

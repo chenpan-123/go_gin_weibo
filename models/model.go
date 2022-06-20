@@ -36,3 +36,8 @@ func QueryUserWithUsername(username string) int {
 	sql := fmt.Sprintf("where username='%s'", username)
 	return QueryUserWightCon(sql)
 }
+
+func QueryUserWithUserParam(username, password string) int {
+	sql := fmt.Sprintf("where username='%s' and password='%s'", username, password)
+	return QueryUserWightCon(sql)
+}

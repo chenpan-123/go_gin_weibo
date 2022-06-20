@@ -1,55 +1,98 @@
 $(document).ready(function () {
     //注册表单验证
     $("register-from").validate({
-        rules:{
-            username:{
-                required:true,
-                rangelength:[5,10]
+        rules: {
+            username: {
+                required: true,
+                rangelength: [5, 10]
             },
-            password:{
-                required:true,
-                rangelength:[5,10]
+            password: {
+                required: true,
+                rangelength: [5, 10]
             },
-            repassword:{
-                required:true,
-                rangelength:[5,10],
-                equalTo:"#register-password"
+            repassword: {
+                required: true,
+                rangelength: [5, 10],
+                equalTo: "#register-password"
             }
         },
-        messages:{
-            username:{
-                required:"请输入用户名",
-                rangelength:"用户名必须是5-10位"
+        messages: {
+            username: {
+                required: "请输入用户名",
+                rangelength: "用户名必须是5-10位"
             },
-            password:{
-                required:"请输入密码",
-                rangelength:"密码必须是5-10位"
+            password: {
+                required: "请输入密码",
+                rangelength: "密码必须是5-10位"
             },
-            repassword:{
-                required:"请确认密码",
-                rangelength:"密码必须是5-10位",
-                equalTo:"两次输入的密码必须相等"
+            repassword: {
+                required: "请确认密码",
+                rangelength: "密码必须是5-10位",
+                equalTo: "两次输入的密码必须相等"
             }
         },
-        submitHandler:function (form) {
+        submitHandler: function (form) {
             var urlStr = "/register";
             // alert("urlStr:"+urlStr)
             $(form).ajaxSubmit({
-                url:urlStr,
-                type:"post",
-                dataType:"json",
-                success:function (data,status) {
-                    alert("data:"+data.message)
-                    if (data.code == 1){
+                url: urlStr,
+                type: "post",
+                dataType: "json",
+                success: function (data, status) {
+                    alert("data:" + data.message)
+                    if (data.code == 1) {
                         setTimeout(function () {
-                            window.location.href="/login"
-                        },1000)
+                            window.location.href = "/login"
+                        }, 1000)
                     }
                 },
-                err:function (data,status) {
-                    alert("err:"+data.message+":"+status)
+                err: function (data, status) {
+                    alert("err:" + data.message + ":" + status)
                 }
-            })
+            });
         }
-    })
+    });
+
+    $("#login-form").validate({
+        rules: {
+            username: {
+                required: true,
+                rangelength: [5, 10]
+            },
+            password: {
+                required: true,
+                rangelength: [5, 10]
+            },
+        },
+        messages: {
+            username: {
+                required: "请输入用户名",
+                rangelength: "用户名必须是5-10位"
+            },
+            password: {
+                required: "请输入密码",
+                rangelength: "密码必须是5-10位"
+            },
+        },
+        submitHandler: function (form) {
+            var urlstr = "/login"
+            alert("urlStr:" + urlstr)
+            $(form).ajaxSubmit({
+                url: urlstr,
+                type: "post",
+                dataType: "json",
+                success: function (data, status) {
+                    alert("dataL" + data.message + ":" + status)
+                    if (data.code == 1) {
+                        setTimeout(function () {
+                            window.location.href = "/"
+                        }, 1000)
+                    }
+                },
+                error: function (data, status) {
+                    alert("err:" + data.message + ":" + status)
+                }
+            });
+        }
+    });
 })
