@@ -28,6 +28,14 @@ func InitRouter() *gin.Engine {
 
 		//退出
 		r.GET("/exit", controllers.ExitGet)
+
+		//路由组
+		v1 := r.Group("/article")
+		{
+			v1.GET("/add", controllers.AddArticleGet)
+			v1.POST("/add", controllers.AddArticlePost)
+
+		}
 	}
 
 	return r

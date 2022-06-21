@@ -95,4 +95,50 @@ $(document).ready(function () {
             });
         }
     });
+
+    //添加文章的表单
+    $("#write-art-form").validate({
+        rules: {
+            title: "required",
+            tags: "required",
+            short: {
+                required: true,
+                minlength: 2
+            },
+            content: {
+                required: true,
+                minlength: 2
+            }
+        },
+        messages: {
+            title: "请输入标题",
+            tags: "请输入标签",
+            short: {
+                required: "请输入简介",
+                minlength: "简介内容最少2个字符"
+            },
+            content: {
+                required: "请输入文章内容",
+                minlength: "文章内容最少2个字符"
+            }
+        },
+        submitHandle: function (form) {
+            var urlStr = "/article/add";
+            alert("urlStr:" + urlStr);
+            $(form).ajaxSubmit({
+                url: urlStr,
+                type: "post",
+                dataType: "json",
+                success: function (data, status) {
+                    alert(":data:" + data.message);
+                    setTimeout(function () {
+                        window.location.href = "/"
+                    }, 1000)
+                },
+                error: function (data, status) {
+                    alert("err:" + data.message + ":" + status)
+                }
+            });
+        }
+    })
 })
