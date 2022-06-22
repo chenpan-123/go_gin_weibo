@@ -34,8 +34,13 @@ func InitRouter() *gin.Engine {
 		{
 			v1.GET("/add", controllers.AddArticleGet)
 			v1.POST("/add", controllers.AddArticlePost)
+			//显示文章内容
+			v1.GET("/show/:id", controllers.ShowArticleGet)
 
 		}
+
+		//显示文章内容
+		r.GET("/show/:id", controllers.ShowArticleGet)
 	}
 
 	return r

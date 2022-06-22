@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"go_gin_weibo/config"
 	"go_gin_weibo/databases"
+	"strconv"
 )
 
 type Article struct {
@@ -42,6 +43,21 @@ func FindArticleWithPage(page int) ([]Article, error) {
 	//从配置文件中获取每页的文章数量
 	return QueryArticleWithPage(page, config.NUM)
 
+}
+
+func QueryArticleWithId(id int) Article {
+	fmt.Println("***", id)
+	row := databases.QueryRowDB("select id,title,tags,short,content,author,createtime from article where id=" + strconv.Itoa(id))
+	title := ""
+	tags := ""
+	short := ""
+	content := ""
+	author := ""
+	var createtime int64
+	createtime = 0
+	row.Scan(&id, &title, &tags, &short, &content, &author, &createtime)
+	art := Article{id, title, tags, short, content, author, createtime}
+	return art
 }
 
 /**

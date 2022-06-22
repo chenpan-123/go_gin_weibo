@@ -39,7 +39,7 @@ func AddArticlePost(c *gin.Context) {
 		//无误
 		response = gin.H{"code": 1, "message": "ok"}
 	} else {
-		response = gin.H{"code": 1, "message": "ok"}
+		response = gin.H{"code": 0, "message": "error"}
 	}
 	c.JSON(http.StatusOK, response)
 }

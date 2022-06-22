@@ -35,7 +35,7 @@ type TagLink struct {
 }
 
 type HomeFooterPageCode struct {
-	Haspre   bool
+	HasPre   bool
 	HasNext  bool
 	ShowPage string
 	PreLink  string
@@ -98,9 +98,16 @@ func ConfigHomeFooterPageCode(page int) HomeFooterPageCode {
 
 	//当前页数小于等于1,那么上一页的按钮不能点击
 	if page <= 1 {
-		pageCode.Haspre = false
+		pageCode.HasPre = false
 	} else {
-		pageCode.Haspre = true
+		pageCode.HasPre = true
+	}
+
+	//当前页数大于等于总页数，那么下一页的按钮不能点击
+	if page >= allPageNum {
+		pageCode.HasNext = false
+	} else {
+		pageCode.HasNext = true
 	}
 
 	pageCode.PreLink = "/?page=" + strconv.Itoa(page-1)

@@ -122,7 +122,7 @@ $(document).ready(function () {
                 minlength: "文章内容最少2个字符"
             }
         },
-        submitHandle: function (form) {
+        submitHandler: function (form) {
             var urlStr = "/article/add";
             alert("urlStr:" + urlStr);
             $(form).ajaxSubmit({

@@ -1,3 +1,3 @@
 package config
 
-const NUM = 6
+const NUM = 5
